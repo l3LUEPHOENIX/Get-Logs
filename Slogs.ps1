@@ -69,7 +69,7 @@ Function Results {
     # Then it iterates through the found .log files, and if the keyword is found in the contents of any of the .log files, it will output the line the keyword was in and the file path of the .log file it came from.
     Get-ChildItem -Path "$defpath$($(yearSearch) + $(monthSearch))" -Recurse | Foreach-Object {
         if ((Select-String $_.FullName -Pattern "$($keyWord.Text)").Length -gt 0) {
-            $product += "[From: $($_.FullName)]:`r`n $(Get-Content $_ -Delimiter "`r`n" | Select-String "$($keyWord.Text)")`r`n"
+            $product += "$("="*100)[FROM: $($_.FullName)]$("="*100)`r`n $(Get-Content $_ -Delimiter "`r`n" | Select-String "$($keyWord.Text)")`r`n"
         }
     }
 

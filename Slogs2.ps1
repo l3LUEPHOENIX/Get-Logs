@@ -1,5 +1,4 @@
 ###Header##
-#$defpath = "D:\Archive\Chat Logs" # Change this to the root directory of your chat log archive
 $defpath = ""
 
 ### Initialize Form ###

@@ -63,7 +63,7 @@ $main_form.Controls.Add($keyWord)
 ### File Extension Input ###
 $extSet = New-Object System.Windows.Forms.TextBox
 $extSet.Multiline = $true
-$extSet.Size = New-Object System.Drawing.Size(60,21)
+$extSet.Size = New-Object System.Drawing.Size(35,21)
 $extSet.Location = New-Object System.Drawing.Point(305,10)
 $extSet.Font = 'Microsoft Sans Serif, 10'
 $extSet.BackColor = 'LightGray'
@@ -77,7 +77,7 @@ $searchButton.text = "Search"
 $searchButton.BackColor = "LightGray"
 $searchButton.Font = 'Microsoft Sans Serif,10'
 $searchButton.Size = New-Object System.Drawing.Size(60,21)
-$searchButton.location = New-Object System.Drawing.Point(370, 10)
+$searchButton.location = New-Object System.Drawing.Point(345, 10)
 $main_form.Controls.Add($searchButton)
 
 ###Functions###

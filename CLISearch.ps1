@@ -1,18 +1,25 @@
 Function Get-Logs {
     <#
-    .SYNOPSIS
-    #
-    
     .DESCRIPTION
+    By: BluePhoenix
+    
     THE GENERAL PURPOSE TOOL
-    Search the contents of all files of the specified extension under the path provided by the user for the keyword. 
+    Search the contents of all files for the keyword under the path provided by the user. 
     Output the full path of the source document and all lines containing the keyword.
+
+    Accepts multiple paths separated by commas.
     
     .EXAMPLE
-    Get-Logs -Path 'C:\Users\User\Documents' -Word 'keyword'
+    Get-Logs -Path 'C:\Users\User\Documents\*.txt' -Word 'keyword'
     
     .NOTES
-    The narrower your search is, the faster you'll get your results.
+    Install Instructions:
+        ### Requires Admin Privelages ###
+        1.) Save this document as a Get-Logs.psm1 file.
+        2.) In Program Files\WindowsPowerShell\Modules, create a folder called Get-Logs
+        3.) If you had a powershell window already open, close it and reopen it.
+        4.) Cheers!
+
     #>
     
     ### Parameters ###
@@ -26,22 +33,13 @@ Function Get-Logs {
         [Alias("Word")]
         [string[]]$keyWord
     )
-    ###Header##
-    #$defpath = ""
-    #$defext = ".txt"
-    #$extSet = ""
-    #$keyWord = ""
-    #$product = "";
 
-    ### This is where most of the magic happens ###
-    # This will recursively retreive all .log files underneath the target directory, which is assembled from the "$defpath" variable and the returns from the yearSearch and monthSearch functions.
-    # Then it iterates through the found .log files, and if the keyword is found in the contents of any of the .log files, it will output the line the keyword was in and the file path of the .log file it came from.
-    Get-ChildItem -Path "$searchPath" -Recurse | Foreach-Object {
-        if ((Select-String $_.FullName -Pattern "$keyWord").Length -gt 0) {
-            Write-Host "$("="*100)`r`n[FROM: $($_.FullName)]`r`n$("="*100)`r`n $(Get-Content $_ -Delimiter "`r`n" | Select-String "$keyWord")`r`n"
+    Get-ChildItem -Path $searchPath -Recurse | Foreach-Object {
+        if ((Select-String $_.FullName -Pattern $keyWord).Length -gt 0) {
+            echo "$("="*100)`r`n[FROM: $($_.FullName)]`r`n$("="*100)`r`n $(Get-Content $_ -Delimiter "`r`n" | Select-String $keyWord)`r`n"
         }
     }
 
-    ### Ideas ###
-    # Have an option to export to text file. Dyanmic name like the date, or test for a name with a number, and if it exists, add one to that number.
+    echo "########## DONE ##########"
 }
+Export-ModuleMember -Function 'Get-Logs'

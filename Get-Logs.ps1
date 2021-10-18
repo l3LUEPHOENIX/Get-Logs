@@ -1,3 +1,8 @@
+echo "=============================="
+echo "|         GET-LOGS           |"
+echo "=============================="
+echo "`r`n"
+
 $searchPath = Read-Host -Prompt "Search Path"
 $keyWord = Read-Host -Prompt "Keyword"
 
